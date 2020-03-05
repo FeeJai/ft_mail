@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :first_name
       t.string :last_name
       t.string :email
-      t.integer :uid
+      t.integer :uid, unique: true
       t.integer :virtual_room, unique: true
 
       t.timestamps

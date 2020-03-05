@@ -1,0 +1,17 @@
+.container-xl
+    %p Your mail:
+    .row.border
+        .col-sm Received at
+        .col-sm Available at compartment
+        .col-sm Will be returned on
+        .col-sm Photo
+    - @snailmails.each do |s|
+        .row.border
+            .col-sm
+                =s.received_at
+            .col-sm
+                =s.compartment.name
+            .col-sm
+                =s.returndate
+            .col-sm
+                Image not available

@@ -16,7 +16,7 @@
 class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[ft_api]
   validates_numericality_of :virtual_room, only_integer: true, in: 10_000..99_999, uniqueness: true
-  #attr_accessor :virtual_room
+  has_many :snailmail
 
   def self.from_omniauth(auth)
     where(uid: auth.extra.raw_info.id).first_or_create do |user|
@@ -36,15 +36,15 @@ class User < ApplicationRecord
 
     # This is a bad algorithm likely to cause high load and timeouts once this gets more popular
     # TODO: replace with something better!
-    random_id = rand(10_000..99_999)
+    random_id = rand(12_000..99_999)
     while User.unscoped.where(virtual_room: random_id).exists?
-        random_id = rand(10_000..99_999)
+      random_id = rand(10_000..99_999)
     end
     random_id
   end
 
   def virtual_room_print
-	virtual_room.to_s + jankowski_checksum(virtual_room)
+    virtual_room.to_s + jankowski_checksum(virtual_room)
   end
 
   protected

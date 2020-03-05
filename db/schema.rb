@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_055138) do
+ActiveRecord::Schema.define(version: 2020_03_05_044502) do
+
+  create_table "compartments", force: :cascade do |t|
+    t.boolean "active", default: false, null: false
+    t.string "name"
+  end
+
+  create_table "snailmails", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "compartment_id"
+    t.datetime "received_at"
+    t.date "returndate"
+    t.index ["compartment_id"], name: "index_snailmails_on_compartment_id"
+    t.index ["user_id"], name: "index_snailmails_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -22,4 +36,6 @@ ActiveRecord::Schema.define(version: 2020_03_04_055138) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "snailmails", "compartments"
+  add_foreign_key "snailmails", "users"
 end
