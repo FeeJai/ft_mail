@@ -1,0 +1,12 @@
+.container-xl
+    %p Admin users:
+    - @admins.each do |a|
+        .row.border
+            .col-sm
+                =a.virtual_room_print
+            .col-sm
+                =a.email
+            .col-sm
+                =a.first_name
+            .col-sm
+                =a.last_name

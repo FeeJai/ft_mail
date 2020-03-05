@@ -4,7 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  received_at    :datetime
-#  returndate     :date
 #  compartment_id :integer
 #  user_id        :integer
 #
@@ -21,5 +20,7 @@
 class Snailmail < ApplicationRecord
     belongs_to :user
     belongs_to :compartment
+
+    delegate :returndate, to: :compartment, allow_nil: false
 
 end

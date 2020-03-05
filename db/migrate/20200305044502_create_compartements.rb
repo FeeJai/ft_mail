@@ -3,6 +3,8 @@ class CreateCompartements < ActiveRecord::Migration[6.0]
     create_table :compartments do |t|
       t.boolean :active, null: false, default: false, unique: true
       t.string :name
+      t.date :returndate
+
     end
   end
 end

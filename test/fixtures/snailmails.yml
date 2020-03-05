@@ -4,7 +4,6 @@
 #
 #  id             :integer          not null, primary key
 #  received_at    :datetime
-#  returndate     :date
 #  compartment_id :integer
 #  user_id        :integer
 #

@@ -1,15 +1,4 @@
-%div.jumbotron
-    %h1 42SV Snail Mail System
-    -if user_signed_in?
-        %p
-            Welcome,
-            = current_user.email
-        %p
-            = link_to "Log out", destroy_user_session_path
-    -else
-        Please 
-        =link_to "log in", user_ft_api_omniauth_authorize_path 
-
 -if user_signed_in?
+    -if @snailmails.present?
+        = render :partial => "snailmail"
     = render :partial => "address"
-    = render :partial => "snailmail"
